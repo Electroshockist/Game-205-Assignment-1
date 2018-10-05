@@ -1,6 +1,4 @@
 ﻿  Main.cpp
-c:\users\erico\files\game-205-assignment-1\assignment 1\assignment 1\main.cpp(5): warning C4326: return type of 'main' should be 'int' instead of 'void'
-  Body.cpp
-  Generating Code...
-c:\users\erico\files\game-205-assignment-1\assignment 1\assignment 1\body.cpp(43): warning C4717: 'Body::Update': recursive on all control paths, function will cause runtime stack overflow
+c:\users\erico\files\game-205-assignment-1\assignment 1\assignment 1\main.cpp(7): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\erico\files\game-205-assignment-1\assignment 1\assignment 1\main.cpp(9): warning C4326: return type of 'main' should be 'int' instead of 'void'
   Assignment 1.vcxproj -> C:\Users\erico\Files\Game-205-Assignment-1\Assignment 1\x64\Debug\Assignment 1.exe

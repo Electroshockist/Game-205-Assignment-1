@@ -18,9 +18,20 @@ void Body::ApplyForce(Vec2 force) {
 	acceleration.x = force.x / mass;
 }
 
-void Body::Update(int timeStepMiliseconds) {
-	sleep_for(milliseconds(timeStepMiliseconds));
-	Update(timeStepMiliseconds);
+void Body::Update(float timeStep) {
+	//for accuracy
+	float timeStepMiliseconds = timeStep * 1000;
+
+	//position += velocity;
+	velocity.x += acceleration.x * timeStep;
+	velocity.y += acceleration.y * timeStep;
+
+	velocity.print();
+
+	//printf("pos: %f, %f\tvel: %f, %f\tacc: %f, %f\n", position.x, position.y, velocity.x, velocity.y, acceleration.x, acceleration.y);
+
+	sleep_for(milliseconds((int)timeStepMiliseconds));
+	Update(timeStep);
 }
 
 Body::~Body() {

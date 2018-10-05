@@ -11,7 +11,7 @@ using namespace std::chrono; // nanoseconds, system_clock, seconds
 class Body {
 public:
 	float mass, rotationalInertia, angle, angularVelocity, angularAcceleration;
-	Vec2 positon, veocity, acceleration;
+	Vec2 position, velocity, acceleration;
 
 	system_clock::time_point currentTime;
 	system_clock::time_point lastUpdateTime;
@@ -20,13 +20,11 @@ public:
 
 	Body(float mass, float rotationalInertia);
 
-	void onCreate();
-
 	void ApplyTorque(float torque);
 
 	void ApplyForce(Vec2 force);
 
-	void Update(int timeStepMiliseconds);
+	void Update(float timeStep);
 
 	~Body();
 };

@@ -11,6 +11,10 @@ Vec2::Vec2(float x, float y) {
 	this->y = y;
 }
 
+void Vec2::print() {
+	printf("x: %f, y: %f\n", x, y);
+}
+
 
 Vec2::~Vec2()
 {
