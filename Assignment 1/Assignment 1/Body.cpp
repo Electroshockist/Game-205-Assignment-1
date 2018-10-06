@@ -15,23 +15,24 @@ void Body::ApplyTorque(float torque) {
 }
 
 void Body::ApplyForce(Vec2 force) {
-	acceleration.x = force.x / mass;
+	acceleration = force / mass;
 }
 
 void Body::Update(float timeStep) {
-	//for accuracy
-	float timeStepMiliseconds = timeStep * 1000;
 
-	//position += velocity;
-	velocity.x += acceleration.x * timeStep;
-	velocity.y += acceleration.y * timeStep;
+	//s = vInitial*time + ((a*t)^2)/2
+	//figure out why I need the if statements
+	if (velocity.x < pow(timeStep, 2) / 2 || velocity.x > pow(timeStep, 2) / 2)
+		position.x = velocity.x * timeStep + (acceleration.x * pow(timeStep, 2) / 2);
 
-	velocity.print();
+	if (velocity.y < pow(timeStep, 2) / 2 || velocity.x > pow(timeStep, 2) / 2)
+		position.y = velocity.y * timeStep + (acceleration.y * pow(timeStep, 2) / 2);
 
-	//printf("pos: %f, %f\tvel: %f, %f\tacc: %f, %f\n", position.x, position.y, velocity.x, velocity.y, acceleration.x, acceleration.y);
+	//calculates vfinal
+	velocity += (acceleration * timeStep);
+	
 
-	sleep_for(milliseconds((int)timeStepMiliseconds));
-	Update(timeStep);
+	printf("pos: %f, %f\tvel: %f, %f\tacc: %f, %f\n", position.x, position.y, velocity.x, velocity.y, acceleration.x, acceleration.y);
 }
 
 Body::~Body() {

@@ -15,7 +15,3 @@ void Vec2::print() {
 	printf("x: %f, y: %f\n", x, y);
 }
 
-
-Vec2::~Vec2()
-{
-}

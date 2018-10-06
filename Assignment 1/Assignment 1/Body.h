@@ -12,9 +12,6 @@ class Body {
 public:
 	float mass, rotationalInertia, angle, angularVelocity, angularAcceleration;
 	Vec2 position, velocity, acceleration;
-
-	system_clock::time_point currentTime;
-	system_clock::time_point lastUpdateTime;
 	
 	Body();
 

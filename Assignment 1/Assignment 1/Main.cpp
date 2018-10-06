@@ -1,17 +1,12 @@
-#include "Body.h"
+#include "GameManager.h"
 
 using namespace std;
 
-const float framerate = 0.033f;
+const float framerate = 1.0f/30.0f;
 
-Body starship = Body(pow(10, 6), 2.67 * pow(10, 10));
+GameManager gameManager;
 
-void main() {
-	//set starship pos to 0,0
-	starship.position = Vec2();
-	starship.acceleration = Vec2(3.0f,5.2f);
-
-	//updates body (do last)
-	starship.Update(framerate);
+int main() {	
+	gameManager.Update(framerate);
 	getchar();
 }
