@@ -13,11 +13,14 @@ void GameManager::Update(float timeStep) {
 
 	//set starship pos to 0,0
 	starship.position = Vec2();
-	if (totalTime == 0) {
-		float e = pow(10, 8);
-		Vec2 accel = Vec2(6.291 * e, 0);
-		starship.ApplyForce(accel);
-	}
+
+	//at time = 0, apply 5 * 10^7 N of force
+	if (totalTime == 0) starship.ApplyForce(Vec2(5 * pow(10,7), 0));
+
+	//apply counterclockwise spin of  at 31 seconds
+	if (totalTime == 31) starship.ApplyTorque(-6.291 * pow(10, 8));
+
+	if (totalTime == 51) starship.acceleration = Vec2();
 
 	//updates body(do not calculate beyond this point)
 	starship.Update(timeStep);

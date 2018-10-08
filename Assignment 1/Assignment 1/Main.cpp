@@ -2,7 +2,7 @@
 
 using namespace std;
 
-const float framerate = 1.0f/30.0f;
+const float framerate = 1.0f;
 
 GameManager gameManager;
 

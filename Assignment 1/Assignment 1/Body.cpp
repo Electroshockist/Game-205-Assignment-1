@@ -28,8 +28,11 @@ void Body::Update(float timeStep) {
 	if (velocity.y < pow(timeStep, 2) / 2 || velocity.x > pow(timeStep, 2) / 2)
 		position.y = velocity.y * timeStep + (acceleration.y * pow(timeStep, 2) / 2);
 
+	//figure out why this doesn't work
+	//velocity += (acceleration * timeStep);
+
 	//calculates vfinal
-	velocity += (acceleration * timeStep);
+	velocity = velocity + (acceleration * timeStep);
 	
 
 	printf("pos: %f, %f\tvel: %f, %f\tacc: %f, %f\n", position.x, position.y, velocity.x, velocity.y, acceleration.x, acceleration.y);
