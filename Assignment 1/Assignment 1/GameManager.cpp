@@ -14,21 +14,30 @@ void GameManager::Update(float timeStep) {
 	//set starship pos to 0,0
 	starship.position = Vec2();
 
-	//at time = 0, apply 5 * 10^7 N of force
-	if (totalTime == 0) starship.ApplyForce(Vec2(5 * pow(10,7), 0));
+	//less than or equal to a minute
+	if (totalTime <= 60) {
 
-	//apply counterclockwise spin of  at 31 seconds
-	if (totalTime == 31) starship.ApplyTorque(-6.291 * pow(10, 8));
+		cout << totalTime << "\t";
 
-	if (totalTime == 51) starship.acceleration = Vec2();
+		//at time = 0, apply 5 * 10^7 N of force
+		if (totalTime == 0) starship.ApplyForce(Vec2(5 * pow(10, 7), 0));
 
-	//updates body(do not calculate beyond this point)
-	starship.Update(timeStep);
+		//apply counterclockwise spin of  at 31 seconds
+		if (totalTime == 31) {
+			starship.acceleration = starship.acceleration / 2;
+			starship.ApplyTorque(-6.291 * pow(10, 8));
+		}
 
-	//sleeps thread till next update
-	sleep_for(milliseconds((int)timeStepMiliseconds));
+		if (totalTime == 51) starship.acceleration = Vec2();
 
-	//update (do last)
-	totalTime += timeStep;
-	Update(timeStep);
+		//updates body(do not calculate beyond this point)
+		starship.Update(timeStep);
+
+		//sleeps thread till next update
+		sleep_for(milliseconds((int)timeStepMiliseconds));
+
+		//update (do last)
+		totalTime += timeStep;
+		Update(timeStep);
+	}
 }

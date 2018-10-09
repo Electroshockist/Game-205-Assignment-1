@@ -35,7 +35,7 @@ void Body::Update(float timeStep) {
 	velocity = velocity + (acceleration * timeStep);
 	
 
-	printf("pos: %f, %f\tvel: %f, %f\tacc: %f, %f\n", position.x, position.y, velocity.x, velocity.y, acceleration.x, acceleration.y);
+	//printf("pos: %f, %f\tvel: %f, %f\tacc: %f, %f\n", position.x, position.y, velocity.x, velocity.y, acceleration.x, acceleration.y);
 }
 
 Body::~Body() {
