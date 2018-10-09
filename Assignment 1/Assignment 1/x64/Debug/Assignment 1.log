@@ -1,6 +1,7 @@
 ﻿  GameManager.cpp
 c:\users\erico\files\game-205-assignment-1\assignment 1\assignment 1\gamemanager.cpp(4): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\erico\files\game-205-assignment-1\assignment 1\assignment 1\gamemanager.cpp(22): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\erico\files\game-205-assignment-1\assignment 1\assignment 1\gamemanager.cpp(27): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\erico\files\game-205-assignment-1\assignment 1\assignment 1\gamemanager.cpp(41): warning C4717: 'GameManager::Update': recursive on all control paths, function will cause runtime stack overflow
+c:\users\erico\files\game-205-assignment-1\assignment 1\assignment 1\gamemanager.cpp(23): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\erico\files\game-205-assignment-1\assignment 1\assignment 1\gamemanager.cpp(28): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  Body.cpp
+  Generating Code...
   Assignment 1.vcxproj -> C:\Users\erico\Files\Game-205-Assignment-1\Assignment 1\x64\Debug\Assignment 1.exe

@@ -19,23 +19,18 @@ void Body::ApplyForce(Vec2 force) {
 }
 
 void Body::Update(float timeStep) {
-
-	//s = vInitial*time + ((a*t)^2)/2
-	//figure out why I need the if statements
-	if (velocity.x < pow(timeStep, 2) / 2 || velocity.x > pow(timeStep, 2) / 2)
-		position.x = velocity.x * timeStep + (acceleration.x * pow(timeStep, 2) / 2);
-
-	if (velocity.y < pow(timeStep, 2) / 2 || velocity.x > pow(timeStep, 2) / 2)
-		position.y = velocity.y * timeStep + (acceleration.y * pow(timeStep, 2) / 2);
+	initialVelocity = velocity;
 
 	//figure out why this doesn't work
 	//velocity += (acceleration * timeStep);
 
 	//calculates vfinal
-	velocity = velocity + (acceleration * timeStep);
-	
+	velocity = initialVelocity + (acceleration * timeStep);
 
-	//printf("pos: %f, %f\tvel: %f, %f\tacc: %f, %f\n", position.x, position.y, velocity.x, velocity.y, acceleration.x, acceleration.y);
+	//s = vInitial * time + ((a*t)^2)/2
+	position = position + ((initialVelocity + velocity) / 2) * timeStep;
+
+	printf("pos: %f, %f\tvel: %f, %f\tacc: %f, %f\n", position.x, position.y, velocity.x, velocity.y, acceleration.x, acceleration.y);
 }
 
 Body::~Body() {

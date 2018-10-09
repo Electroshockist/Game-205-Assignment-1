@@ -17,7 +17,7 @@ void GameManager::Update(float timeStep) {
 	//less than or equal to a minute
 	if (totalTime <= 60) {
 
-		cout << totalTime << "\t";
+		cout << totalTime;
 
 		//at time = 0, apply 5 * 10^7 N of force
 		if (totalTime == 0) starship.ApplyForce(Vec2(5 * pow(10, 7), 0));
