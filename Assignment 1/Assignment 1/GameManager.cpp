@@ -17,7 +17,7 @@ void GameManager::Update(float timeStep) {
 	//less than or equal to a minute
 	if (totalTime <= 60) {
 
-		cout << totalTime;
+		cout << totalTime << "\t";
 
 		//at time = 0, apply 5 * 10^7 N of force
 		if (totalTime == 0) starship.ApplyForce(Vec2(5 * pow(10, 7), 0));
@@ -28,6 +28,7 @@ void GameManager::Update(float timeStep) {
 			starship.ApplyTorque(-6.291 * pow(10, 8));
 		}
 
+		//reset acceleration to 0
 		if (totalTime == 51) starship.acceleration = Vec2();
 
 		//updates body(do not calculate beyond this point)

@@ -2,7 +2,10 @@
 #include <iostream>
 #include <chrono>
 #include <thread>
+#include <math.h>
 #include "Vec2.h"
+
+#define PI 3.14159265
 
 using namespace std;
 using namespace std::this_thread; // sleep_for, sleep_until
@@ -22,7 +25,5 @@ public:
 	void ApplyForce(Vec2 force);
 
 	void Update(float timeStep);
-
-	~Body();
 };
 
