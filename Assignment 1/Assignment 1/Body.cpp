@@ -29,9 +29,7 @@ void Body::Update(float timeStep) {
 	//calculates angle using theta_f = theta_i + omega_i*delta(time) + alpha * (delta(time))^2
 	//I update theta, x and y first, so that I don't have to keep seperate variables for initial values
 	angle += angularVelocity * timeStep + (angularAcceleration*pow(timeStep, 2)) / 2;
-
-	acceleration =
-
+	
 	velocity = velocity * timeStep + (acceleration*pow(timeStep, 2)) / 2;
 
 	//calculate angular velocity using omega_f = omega_i + alpha * delta(time)
@@ -40,6 +38,6 @@ void Body::Update(float timeStep) {
 	//calculate velocity using v_f = v_i + accel * delta(time)
 	velocity = velocity + acceleration * timeStep;
 
-	printf("pos: %f, %f\tvel: %f, %f\tacc: %f, %f\n", position.x, position.y, velocity.x, velocity.y, acceleration.x, acceleration.y);
+	printf("Angular Accel: %f\tAngular Vel: %f\tAngle: %f\tAcceleration: %f, %f\tVelocity: %f, %f\tPosition: %f, %f\n", angularAcceleration, angularVelocity, angle, acceleration.x, acceleration.y, velocity.x, velocity.y, position.x, position.y);
 }
 

@@ -25,7 +25,7 @@ void GameManager::Update(float timeStep) {
 		//apply counterclockwise spin of  at 31 seconds
 		if (totalTime == 31) {
 			starship.acceleration = starship.acceleration / 2;
-			starship.ApplyTorque(-6.291 * pow(10, 8));
+			starship.ApplyTorque(6.291 * pow(10, 8));
 		}
 
 		//reset acceleration to 0
@@ -35,7 +35,7 @@ void GameManager::Update(float timeStep) {
 		starship.Update(timeStep);
 
 		//sleeps thread till next update
-		sleep_for(milliseconds((int)timeStepMiliseconds));
+		//sleep_for(milliseconds((int)timeStepMiliseconds));
 
 		//update (do last)
 		totalTime += timeStep;
