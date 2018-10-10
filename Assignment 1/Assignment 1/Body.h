@@ -14,7 +14,7 @@ using namespace std::chrono; // nanoseconds, system_clock, seconds
 class Body {
 public:
 	float mass, rotationalInertia, angle, angularVelocity, angularAcceleration;
-	Vec2 position, velocity, acceleration;
+	Vec2 position, velocity, acceleration, relativeForce, worldForce;
 	
 	Body();
 

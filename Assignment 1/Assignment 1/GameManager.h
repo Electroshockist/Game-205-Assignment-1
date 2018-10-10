@@ -9,7 +9,6 @@ using namespace std::chrono; // nanoseconds, system_clock, seconds
 class GameManager
 {
 public:
-
 	GameManager();
 
 	float totalTime;	
