@@ -7,7 +7,7 @@ const float framerate = 1.0f;
 
 GameManager gameManager;
 
-int main() {	
+int main() {
 	gameManager.Update(framerate);
 	getchar();
 }

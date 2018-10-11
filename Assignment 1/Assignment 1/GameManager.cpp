@@ -5,6 +5,11 @@ Body starship = Body(pow(10, 6), 2.67 * pow(10, 10));
 
 GameManager::GameManager() {
 	totalTime = 0.0f;
+
+	file.open("Resources/file.csv", fstream::trunc);
+	file << "Time:,Angular Acceleration:,Angular Velocity:,Angle:,Acceleration: x:,y:,Velocity: x:,y:,Position: x:,y:" << endl;
+
+	printf("Time:\tAngular Accel:\tAngular Vel:\tAngle:\t\tAcceleration:\t\tVelocity:\t\t\tPosition:\n");
 }
 
 void GameManager::Update(float timeStep) {
@@ -20,21 +25,32 @@ void GameManager::Update(float timeStep) {
 		//cout << totalTime << "\t";
 
 		//at time = 0, apply 5 * 10^7 N of force
-		if (totalTime == 0) starship.ApplyForce(Vec2(5 * pow(10, 7), 0));
+		if (totalTime == 0) {
+			starship.ApplyForce(Vec2(5 * pow(10, 7), 0));
+		}
 
-		//apply counterclockwise spin of  at 31 seconds
+		//halve thrust and apply counterclockwise spin of 6.281 * 10 ^ 8 at 31 seconds
 		if (totalTime == 31) {
-			starship.relativeForce = starship.relativeForce / 2;
+			starship.ApplyForce(Vec2(5 * pow(10, 7) / 2, 0));
 			starship.ApplyTorque(6.291 * pow(10, 8));
 		}
 
 		//reset acceleration to 0
-		if (totalTime == 51) starship.relativeForce = Vec2();
+		if (totalTime == 51) {
+			starship.acceleration = Vec2(0, 0);
+			starship.angularAcceleration = 0;
+		}
+
+
+		file << totalTime << "," << starship.angularAcceleration << "," << starship.angularVelocity << "," << starship.angle << "," 
+			<< starship.acceleration.x << "," << starship.acceleration.y << "," 
+			<< starship.velocity.x << "," << starship.velocity.y << "," 
+			<< starship.position.x << "," << starship.position.y << endl;
 
 		//updates body(do not calculate beyond this point)
 		starship.Update(timeStep);
 
-		//sleeps thread till next update
+		//sleeps thread till next update (unnessecary for now)
 		//sleep_for(milliseconds((int)timeStepMiliseconds));
 
 		//update (do last)
