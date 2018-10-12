@@ -1,60 +1,56 @@
 #include "GameManager.h"
 #include "Body.h"
 
-Body starship = Body(pow(10, 6), 2.67 * pow(10, 10));
+Body starship = Body(1e+6f, 2.67e+10f);
 
 GameManager::GameManager() {
 	totalTime = 0.0f;
 
 	file.open("Resources/file.csv", fstream::trunc);
-	file << "Time:,Angular Acceleration:,Angular Velocity:,Angle:,Acceleration: x:,y:,Velocity: x:,y:,Position: x:,y:" << endl;
+	file << "Time:,Angular Acceleration:,Angular Velocity:,Angle:,Force: x:,y:,Acceleration: x:,y:,Velocity: x:,y:,Position: x:,y:" << endl;
 
-	printf("Time:\tAngular Accel:\tAngular Vel:\tAngle:\t\tAcceleration:\t\tVelocity:\t\t\tPosition:\n");
+	printf("Time:\tAngular Accel:\tAngular Vel:\tAngle:\tForce:\t\tAcceleration:\tVelocity:\tPosition:\n");
 }
 
 void GameManager::Update(float timeStep) {
-	//for accuracy (will be cast to int later)
-	float timeStepMiliseconds = timeStep * 1000;
-
-	//set starship pos to 0,0
-	starship.position = Vec2();
-
 	//less than or equal to a minute
-	if (totalTime <= 60) {
-
-		//cout << totalTime << "\t";
+	while (totalTime <= 60) {
 
 		//at time = 0, apply 5 * 10^7 N of force
 		if (totalTime == 0) {
-			starship.ApplyForce(Vec2(5 * pow(10, 7), 0));
+			//set starship pos to 0,0
+			starship.position = Vec2();
+			starship.relativeForce.x = 5e+7f;
 		}
 
 		//halve thrust and apply counterclockwise spin of 6.281 * 10 ^ 8 at 31 seconds
-		if (totalTime == 31) {
-			starship.ApplyForce(Vec2(5 * pow(10, 7) / 2, 0));
-			starship.ApplyTorque(6.291 * pow(10, 8));
+		if (totalTime > 30 && totalTime < 50) {
+			starship.relativeForce.x = 5e+7f / 2;
+			starship.Torque = 6.291e+8f;
 		}
 
 		//reset acceleration to 0
-		if (totalTime == 51) {
-			starship.acceleration = Vec2(0, 0);
-			starship.angularAcceleration = 0;
+		if (totalTime > 50) {
+			starship.relativeForce = Vec2();
 		}
-
-
-		file << totalTime << "," << starship.angularAcceleration << "," << starship.angularVelocity << "," << starship.angle << "," 
-			<< starship.acceleration.x << "," << starship.acceleration.y << "," 
-			<< starship.velocity.x << "," << starship.velocity.y << "," 
-			<< starship.position.x << "," << starship.position.y << endl;
-
+				
 		//updates body(do not calculate beyond this point)
+		starship.ApplyTorque(starship.Torque);;
 		starship.Update(timeStep);
 
-		//sleeps thread till next update (unnessecary for now)
-		//sleep_for(milliseconds((int)timeStepMiliseconds));
+		file << totalTime << "," << starship.angularAcceleration << "," << starship.angularVelocity << "," << starship.angle << ","
+			<< starship.relativeForce.x << "," << starship.relativeForce.y << ","
+			<< starship.acceleration.x << "," << starship.acceleration.y << ","
+			<< starship.velocity.x << "," << starship.velocity.y << ","
+			<< starship.position.x << "," << starship.position.y << endl;
+
+		cout << /*totalTime << "\t" << starship.angularAcceleration << "\t\t" <<*/ starship.angularVelocity << "\t\t" << starship.angle << "\t"
+			//<< starship.relativeForce.x << "\t" << starship.relativeForce.y << "\t" 
+			<< starship.acceleration.x << "\t" << starship.acceleration.y << "\t" 
+			<< starship.velocity.x << "\t" << starship.velocity.y << "\t" 
+			<< starship.position.x << "\t" << starship.position.y << endl;
 
 		//update (do last)
 		totalTime += timeStep;
-		Update(timeStep);
 	}
 }

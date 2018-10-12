@@ -1,4 +1,4 @@
-﻿  Body.cpp
-c:\users\erico\files\game-205-assignment-1\assignment 1\assignment 1\body.cpp(26): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\erico\files\game-205-assignment-1\assignment 1\assignment 1\body.cpp(27): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-  Assignment 1.vcxproj -> C:\Users\erico\Files\Game-205-Assignment-1\Assignment 1\x64\Debug\Assignment 1.exe
+﻿  GameManager.cpp
+  Body.cpp
+  Generating Code...
+  Assignment 1.vcxproj -> C:\Users\erico\Documents\Code\Game-205-Assignment-1\Assignment 1\x64\Debug\Assignment 1.exe
