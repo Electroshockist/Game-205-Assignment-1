@@ -24,7 +24,7 @@ void GameManager::Update(float timeStep) {
 		}
 
 		//halve thrust and apply counterclockwise spin of 6.281 * 10 ^ 8 at 31 seconds
-		if (totalTime > 30 && totalTime < 50) {
+		if (totalTime > 30 && totalTime <= 50) {
 			starship.relativeForce.x = 5e+7f / 2;
 			starship.Torque = 6.291e+8f;
 		}
@@ -39,13 +39,14 @@ void GameManager::Update(float timeStep) {
 		starship.Update(timeStep);
 
 		file << totalTime << "," << starship.angularAcceleration << "," << starship.angularVelocity << "," << starship.angle << ","
-			<< starship.relativeForce.x << "," << starship.relativeForce.y << ","
+			<< starship.worldForce.x << "," << starship.worldForce.y << ","
 			<< starship.acceleration.x << "," << starship.acceleration.y << ","
 			<< starship.velocity.x << "," << starship.velocity.y << ","
 			<< starship.position.x << "," << starship.position.y << endl;
 
-		cout << /*totalTime << "\t" << starship.angularAcceleration << "\t\t" <<*/ starship.angularVelocity << "\t\t" << starship.angle << "\t"
-			//<< starship.relativeForce.x << "\t" << starship.relativeForce.y << "\t" 
+		//using cout abbreviates numbers, but forces newline. using printf keeps proper line endings, but does not abbreviate
+		cout << totalTime << "\t" << starship.angularAcceleration << "\t\t" << starship.angularVelocity << "\t\t" << starship.angle << "\t"
+			<< starship.worldForce.x << "\t" << starship.worldForce.y << "\t" 
 			<< starship.acceleration.x << "\t" << starship.acceleration.y << "\t" 
 			<< starship.velocity.x << "\t" << starship.velocity.y << "\t" 
 			<< starship.position.x << "\t" << starship.position.y << endl;
